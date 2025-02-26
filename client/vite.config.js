@@ -4,24 +4,23 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   server: {
-    strictPort: true,
+    strictPort: true, // Belirtilen portta çalışmaya zorlar, port boşsa hata verir.
     watch: {
-      usePolling: true,
+      usePolling: true, // Değişiklikleri izlemek için polling kullanır (genellikle dosya sisteminde sorun olan sistemlerde faydalıdır).
     },
     headers: {
-      "Access-Control-Allow-Origin": "*",
-      // "Cache-Control": "no-cache", // Önbelleği devre dışı bırak
+      "Access-Control-Allow-Origin": "*", // Tüm kaynaklardan erişime izin verir
     },
-    host: "0.0.0.0",
-    port: 1342,
-    cors: true,
+    host: "0.0.0.0", // Herhangi bir IP'den erişime izin verir
+    port: 80, // Varsayılan HTTP portu, bu portu kullanarak yalnızca IP adresi üzerinden erişebilirsiniz.
+    cors: true, // CORS (Cross-Origin Resource Sharing) desteği sağlar.
   },
   resolve: {
     alias: {
-      "@": "/src",
+      "@": "/src", // '@' ile 'src' klasörüne kısa yol oluşturur
     },
   },
   build: {
-    target: "esnext",
+    target: "esnext", // Modern JavaScript'i hedefler (ESNext), eski tarayıcıları hedeflemiyor.
   },
 });
